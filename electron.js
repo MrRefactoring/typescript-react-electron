@@ -1,8 +1,19 @@
+const fs = require('fs');
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
+const distPath = path.join(__dirname, 'dist');
 const ENV = process.env.NODE_ENV || 'development';
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+
+if (ENV === 'development') {
+  if (!fs.existsSync(distPath)) {
+    fs.mkdirSync(distPath);
+    fs.writeFileSync(path.join(distPath, 'index.html', ''));
+  }
+
+  require('electron-reload')(distPath);
+}
 
 let mainWindow;
 
@@ -18,7 +29,6 @@ app.on('ready', () => {
   mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
 
   if (ENV === 'development') {
-    require('electron-reload')(path.join(__dirname, 'dist'));
     mainWindow.toggleDevTools();
   }
 
