@@ -33,7 +33,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
-    "electron": "^5.0.5",
+    "electron": "^9.1.0",
     "electron-react-devtools": "^0.5.3",
     "electron-reload": "^1.4.0",
     "file-loader": "^4.0.0",
